@@ -1,4 +1,5 @@
 // Mu's Loop and Function JavaScript File - Date: 2024-01-13
+<a href="index.html">Link to loop_function</a>
 
 // 2. Create a new variable starting at a number of your choice
 let startingNumber = 7;
