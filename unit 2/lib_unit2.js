@@ -1,5 +1,5 @@
-// lib_example.js
-class ExampleClass {
+// lib_unit2.js
+class Unit2Class {
     constructor(name) {
         this.name = name;
     }
