@@ -33,3 +33,9 @@ class Car {
 // Object Creation and Method Call
 const myCar = new Car('Toyota', 'Camry', 2022);
 myCar.accelerate(); // Output: The Toyota Camry is now traveling at 10 mph.
+
+// Changing the speed of the car
+myCar.accelerate(); // Speed increased by 10 mph
+myCar.accelerate(); // Speed increased by another 10 mph
+myCar.brake();      // Speed decreased by 5 mph
+
