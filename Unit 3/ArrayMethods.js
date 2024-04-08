@@ -14,23 +14,23 @@ function pushToArray() {
     update();
 }
 
-function removeLast() {
+function popFromArray() {
     myArray.pop();
     update();
 }
 
-function removeFirst() {
-    myArray.shift();
-    update();
-}
-
-function addFirst() {
+function unshiftToArray() {
     const inputValue = document.getElementById('inputField').value;
     myArray.unshift(inputValue);
     update();
 }
 
-function addSuffix() {
+function shiftFromArray() {
+    myArray.shift();
+    update();
+}
+
+function arrMap() {
     const inputValue = document.getElementById('inputField').value;
     myArray = myArray.map(item => item + inputValue);
     update();
