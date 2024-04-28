@@ -15,6 +15,10 @@ document.addEventListener('DOMContentLoaded', function() {
 function changeColor(element) {
     // Generate a random color
     var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
-    // Set the new color to the element
-    element.setAttribute('material', 'color', randomColor);
+    // Get the material component of the element
+    var material = element.components.material;
+    // Set the new color to the material component
+    material.color = randomColor;
+    // Update the material component
+    material.updateMaterial();
 }
