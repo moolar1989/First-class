@@ -16,5 +16,5 @@ function changeColor(element) {
     // Generate a random color
     var randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
     // Set the new color to the element
-    element.setAttribute('color', randomColor);
+    element.setAttribute('material', 'color', randomColor);
 }
