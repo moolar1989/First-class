@@ -1,80 +1,80 @@
-class Leaf {
+// Linked List implementation
+class ListNode {
     constructor(value) {
         this.value = value;
-        this.left = null;
-        this.right = null;
+        this.next = null;
     }
 }
 
-// Create the head of the tree
-const head = new Leaf(5);
-
-// Create more leaves and connect them to the tree
-head.left = new Leaf(3);
-head.right = new Leaf(8);
-head.left.left = new Leaf(2);
-head.left.right = new Leaf(4);
-head.right.left = new Leaf(7);
-head.right.right = new Leaf(9);
-head.left.left.left = new Leaf(1);
-head.left.left.right = new Leaf(6);
-head.right.right.left = new Leaf(10);
-
-// Depth First Search function
-function depthFirstSearch(node, depthArray) {
-    if (node !== null) {
-        depthFirstSearch(node.left, depthArray);
-        depthArray.push(node.value);
-        depthFirstSearch(node.right, depthArray);
+class LinkedList {
+    constructor() {
+        this.head = null;
     }
-}
 
-// Breadth First Search function
-function breadthFirstSearch(node, breadthArray) {
-    const queue = [];
-    if (node !== null) {
-        queue.push(node);
-        while (queue.length > 0) {
-            const currentNode = queue.shift();
-            breadthArray.push(currentNode.value);
-            if (currentNode.left !== null) {
-                queue.push(currentNode.left);
+    insert(value) {
+        const newNode = new ListNode(value);
+        if (!this.head) {
+            this.head = newNode;
+        } else {
+            let current = this.head;
+            while (current.next) {
+                current = current.next;
             }
-            if (currentNode.right !== null) {
-                queue.push(currentNode.right);
-            }
+            current.next = newNode;
         }
     }
-}
 
-// Perform depth first search
-const depth = [];
-depthFirstSearch(head, depth);
-// Perform breadth first search
-const breadth = [];
-breadthFirstSearch(head, breadth);
-
-// Display the contents of each array
-document.getElementById("depthResult").textContent = depth.join(", ");
-document.getElementById("breadthResult").textContent = breadth.join(", ");
-
-// Dynamically generate tree visualization
-const treeContainer = document.getElementById("tree");
-generateTreeVisualization(head, treeContainer);
-
-function generateTreeVisualization(node, container) {
-    if (node !== null) {
-        const branch = document.createElement("div");
-        branch.classList.add("branch");
-
-        const leaf = document.createElement("div");
-        leaf.classList.add("leaf");
-        leaf.textContent = node.value;
-        branch.appendChild(leaf);
-
-        container.appendChild(branch);
-
-        generateTreeVisualization(node.left, branch);
-        generateTreeVisualization(node.right, branch);
+    display() {
+        let current = this.head;
+        let result = '';
+        while (current) {
+            result += `<li class="task-item">${current.value}</li>`;
+            current = current.next;
+        }
+        return result;
     }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    const taskInput = document.getElementById('taskInput');
+    const addTaskBtn = document.getElementById('addTaskBtn');
+    const taskList = document.getElementById('taskList');
+    const myList = new LinkedList();
+
+    addTaskBtn.addEventListener('click', function () {
+        const taskText = taskInput.value.trim();
+        if (taskText !== '') {
+            myList.insert(taskText);
+            taskList.innerHTML = myList.display();
+            taskInput.value = '';
+        } else {
+            alert('Please enter a task!');
+        }
+    });
+
+    let draggingTask = null;
+
+    taskList.addEventListener('mousedown', function (e) {
+        if (e.target.classList.contains('task-item')) {
+            draggingTask = e.target;
+        }
+    });
+
+    taskList.addEventListener('mouseup', function () {
+        draggingTask = null;
+    });
+
+    taskList.addEventListener('mousemove', function (e) {
+        if (draggingTask) {
+            const aboveTask = document.elementFromPoint(e.clientX, e.clientY);
+            if (aboveTask && aboveTask.classList.contains('task-item')) {
+                const rect = aboveTask.getBoundingClientRect();
+                if (e.clientY < rect.top + rect.height / 2) {
+                    taskList.insertBefore(draggingTask, aboveTask);
+                } else {
+                    taskList.insertBefore(draggingTask, aboveTask.nextElementSibling);
+                }
+            }
+        }
+    });
+});
