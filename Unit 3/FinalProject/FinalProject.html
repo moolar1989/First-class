@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithms</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .tree {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .branch {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        .leaf {
+            width: 40px;
+            height: 40px;
+            background-color: #4CAF50;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 16px;
+            margin: 0 10px;
+            transition: transform 0.5s ease-in-out;
+        }
+        .leaf:hover {
+            transform: scale(1.1);
+        }
+        .leaf:nth-child(odd) {
+            background-color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Binary Tree Visualization</h1>
+    
+    <div class="tree" id="tree">
+        <!-- Tree visualization will be generated dynamically -->
+    </div>
+
+    <h2>Depth First Search Result:</h2>
+    <p id="depthResult"></p>
+
+    <h2>Breadth First Search Result:</h2>
+    <p id="breadthResult"></p>
+
+    <script src="algorithms.js" defer></script>
+</body>
+</html>
+
